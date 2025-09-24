@@ -11,6 +11,7 @@ import com.secure.noteApp.security.request.SignupRequest;
 import com.secure.noteApp.security.response.LoginResponse;
 import com.secure.noteApp.security.response.MessageResponse;
 import com.secure.noteApp.security.response.UserInfoResponse;
+import com.secure.noteApp.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,7 +55,7 @@ public class AuthController {
     PasswordEncoder encoder;
 
     @Autowired
-    UserDetailsService userService;;
+    UserService userService;;
 
     @PostMapping("/public/signin")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
@@ -133,7 +134,7 @@ public class AuthController {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
-/*
+
 
     @GetMapping("/user")
     public ResponseEntity<?> getUserDetails(@AuthenticationPrincipal UserDetails userDetails) {
@@ -165,5 +166,5 @@ public class AuthController {
     public String currentUserName(@AuthenticationPrincipal UserDetails userDetails) {
         return (userDetails != null) ? userDetails.getUsername() : "";
     }
-*/
+
 }
