@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 console.log("API URL:", process.env.REACT_APP_API_URL);
 
 // Create an Axios instance
@@ -44,5 +45,11 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+
+
+
+
+
 
 export default api;

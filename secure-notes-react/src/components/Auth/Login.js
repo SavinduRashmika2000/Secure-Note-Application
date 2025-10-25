@@ -244,7 +244,7 @@ const Login = () => {
               disabled={loading}
               onClickhandler={() => {}}
               className="bg-customRed font-semibold text-white w-full py-2 hover:text-slate-400 transition-colors duration-100 rounded-sm my-3"
-              type="text"
+              type="submit"
             >
               {loading ? <span>Loading...</span> : "Verify 2FA"}
             </Buttons>
