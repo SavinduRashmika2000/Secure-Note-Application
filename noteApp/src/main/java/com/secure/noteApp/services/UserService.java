@@ -20,4 +20,6 @@ public interface UserService {
     void updateAccountLockStatus(Long userId, boolean lock);
 
     List<Role> getAllRoles();
+
+    void updateAccountExpiryStatus(Long userId, boolean expire);
 }

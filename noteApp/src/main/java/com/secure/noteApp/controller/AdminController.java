@@ -1,6 +1,7 @@
 package com.secure.noteApp.controller;
 
 import com.secure.noteApp.dtos.UserDTO;
+import com.secure.noteApp.models.Role;
 import com.secure.noteApp.models.User;
 import com.secure.noteApp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,12 @@ public class AdminController {
     @GetMapping("/roles")
     public List<Role> getAllRoles() {
         return userService.getAllRoles();
+    }
+    @PutMapping("/update-expiry-status")
+    public ResponseEntity<String> updateAccountExpiryStatus(@RequestParam Long userId,
+                                                            @RequestParam boolean expire) {
+        userService.updateAccountExpiryStatus(userId, expire);
+        return ResponseEntity.ok("Account expiry status updated");
     }
 
 
