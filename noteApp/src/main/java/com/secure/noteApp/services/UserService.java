@@ -15,4 +15,6 @@ public interface UserService {
     UserDTO getUserById(Long id);
 
     User findByUsername(String username);
+
+    void updateAccountLockStatus(Long userId, boolean lock);
 }
