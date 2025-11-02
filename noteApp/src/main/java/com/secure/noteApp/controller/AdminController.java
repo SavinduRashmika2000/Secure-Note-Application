@@ -44,6 +44,10 @@ public class AdminController {
         userService.updateAccountLockStatus(userId, lock);
         return ResponseEntity.ok("Account lock status updated");
     }
+    @GetMapping("/roles")
+    public List<Role> getAllRoles() {
+        return userService.getAllRoles();
+    }
 
 
 }
