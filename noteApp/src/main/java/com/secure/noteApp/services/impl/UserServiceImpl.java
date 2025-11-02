@@ -15,7 +15,10 @@ import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
-    
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @Autowired
     UserRepository userRepository;
 
@@ -102,6 +105,17 @@ public class UserServiceImpl implements UserService {
                 -> new RuntimeException("User not found"));
         user.setCredentialsNonExpired(!expire);
         userRepository.save(user);
+    }
+    @Override
+    public void updatePassword(Long userId, String password) {
+        try {
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+            user.setPassword(passwordEncoder.encode(password));
+            userRepository.save(user);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to update password");
+        }
     }
 
 }

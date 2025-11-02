@@ -66,6 +66,16 @@ public class AdminController {
         userService.updateCredentialsExpiryStatus(userId, expire);
         return ResponseEntity.ok("Credentials expiry status updated");
     }
+    @PutMapping("/update-password")
+    public ResponseEntity<String> updatePassword(@RequestParam Long userId,
+                                                 @RequestParam String password) {
+        try {
+            userService.updatePassword(userId, password);
+            return ResponseEntity.ok("Password updated");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
 
 
 }
