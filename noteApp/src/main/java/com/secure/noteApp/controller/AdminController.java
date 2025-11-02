@@ -55,6 +55,12 @@ public class AdminController {
         userService.updateAccountExpiryStatus(userId, expire);
         return ResponseEntity.ok("Account expiry status updated");
     }
+    @PutMapping("/update-enabled-status")
+    public ResponseEntity<String> updateAccountEnabledStatus(@RequestParam Long userId,
+                                                             @RequestParam boolean enabled) {
+        userService.updateAccountEnabledStatus(userId, enabled);
+        return ResponseEntity.ok("Account enabled status updated");
+    }
 
 
 }

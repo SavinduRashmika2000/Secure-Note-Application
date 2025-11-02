@@ -22,4 +22,6 @@ public interface UserService {
     List<Role> getAllRoles();
 
     void updateAccountExpiryStatus(Long userId, boolean expire);
+
+    void updateAccountEnabledStatus(Long userId, boolean enabled);
 }

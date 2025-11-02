@@ -89,5 +89,12 @@ public class UserServiceImpl implements UserService {
         user.setAccountNonExpired(!expire);
         userRepository.save(user);
     }
+    @Override
+    public void updateAccountEnabledStatus(Long userId, boolean enabled) {
+        User user = userRepository.findById(userId).orElseThrow(()
+                -> new RuntimeException("User not found"));
+        user.setEnabled(enabled);
+        userRepository.save(user);
+    }
 
 }
