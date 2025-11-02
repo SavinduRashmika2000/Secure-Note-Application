@@ -96,5 +96,12 @@ public class UserServiceImpl implements UserService {
         user.setEnabled(enabled);
         userRepository.save(user);
     }
+    @Override
+    public void updateCredentialsExpiryStatus(Long userId, boolean expire) {
+        User user = userRepository.findById(userId).orElseThrow(()
+                -> new RuntimeException("User not found"));
+        user.setCredentialsNonExpired(!expire);
+        userRepository.save(user);
+    }
 
 }
