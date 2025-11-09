@@ -8,6 +8,7 @@ import com.secure.noteApp.repositories.RoleRepository;
 import com.secure.noteApp.repositories.UserRepository;
 import com.secure.noteApp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
