@@ -39,6 +39,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     PasswordResetTokenRepository passwordResetTokenRepository;
 
+    @Autowired
+    EmailServiceImpl emailService;
+
     @Override
     public void updateUserRole(Long userId, String roleName) {
         User user = userRepository.findById(userId).orElseThrow(()
@@ -144,7 +147,7 @@ public class UserServiceImpl implements UserService {
 
         String resetUrl = frontendUrl + "/reset-password?token=" + token;
         // Send email to user
-
+        emailService.sendPasswordResetEmail(user.getEmail(), resetUrl);
     }
 
 
