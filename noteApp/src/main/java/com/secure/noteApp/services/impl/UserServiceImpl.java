@@ -9,6 +9,7 @@ import com.secure.noteApp.repositories.PasswordResetTokenRepository;
 import com.secure.noteApp.repositories.RoleRepository;
 import com.secure.noteApp.repositories.UserRepository;
 import com.secure.noteApp.services.UserService;
+import com.secure.noteApp.util.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
     PasswordResetTokenRepository passwordResetTokenRepository;
 
     @Autowired
-    EmailServiceImpl emailService;
+    EmailService emailService;
 
     @Override
     public void updateUserRole(Long userId, String roleName) {
