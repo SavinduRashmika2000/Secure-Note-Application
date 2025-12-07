@@ -177,7 +177,7 @@ public class AuthController {
         return (userDetails != null) ? userDetails.getUsername() : "";
     }
 
-    @PostMapping("/public/")
+    @PostMapping("/public/forgot-password")
     public ResponseEntity<?> forgotPassword(@RequestParam String email) {
         try {
             userService.generatePasswordResetToken(email);
