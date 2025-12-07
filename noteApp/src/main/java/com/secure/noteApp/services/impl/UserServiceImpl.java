@@ -10,6 +10,7 @@ import com.secure.noteApp.repositories.RoleRepository;
 import com.secure.noteApp.repositories.UserRepository;
 import com.secure.noteApp.services.UserService;
 import com.secure.noteApp.util.EmailService;
+import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -42,6 +43,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     EmailService emailService;
+
+    @Autowired
+    TotpServiceImpl totpService;
 
     @Override
     public void updateUserRole(Long userId, String roleName) {
@@ -182,7 +186,25 @@ public class UserServiceImpl implements UserService {
         }
         return userRepository.save(user);
     }
+    public GoogleAuthenticatorKey generate2FASecret(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        GoogleAuthenticatorKey key=totpService.generateSecret();
+        user.setTwoFactorSecret(key.getKey());
+        userRepository.save(user);
+        return key;
+    }
+    public boolean validate2FACode(Long userId,int code){
 
+    }
+
+    public void enable2FA(Long userId){
+
+    }
+
+    public void disable2FA(Long userId){
+
+    }
 
 
 }
