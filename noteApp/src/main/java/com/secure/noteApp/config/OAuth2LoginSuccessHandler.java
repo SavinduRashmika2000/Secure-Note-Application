@@ -114,7 +114,7 @@ public class OAuth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSu
         // Extract necessary attributes
         String email = (String) attributes.get("email");
         System.out.println("OAuth2LoginSuccessHandler: " + username + " : " + email);
-        
+
 
         Set<SimpleGrantedAuthority> authorities = new HashSet<>(oauth2User.getAuthorities().stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
