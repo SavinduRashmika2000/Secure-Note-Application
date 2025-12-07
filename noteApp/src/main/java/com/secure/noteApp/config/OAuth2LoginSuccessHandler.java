@@ -53,6 +53,7 @@ public class OAuth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSu
             Map<String, Object> attributes = principal.getAttributes();
             String email = attributes.getOrDefault("email", "").toString();
             String name = attributes.getOrDefault("name", "").toString();
+
             if ("github".equals(oAuth2AuthenticationToken.getAuthorizedClientRegistrationId())) {
                 username = attributes.getOrDefault("login", "").toString();
                 idAttributeKey = "id";
@@ -113,6 +114,7 @@ public class OAuth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSu
         // Extract necessary attributes
         String email = (String) attributes.get("email");
         System.out.println("OAuth2LoginSuccessHandler: " + username + " : " + email);
+        
 
         Set<SimpleGrantedAuthority> authorities = new HashSet<>(oauth2User.getAuthorities().stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
